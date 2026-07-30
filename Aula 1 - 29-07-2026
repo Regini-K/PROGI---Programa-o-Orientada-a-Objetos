@@ -1,0 +1,75 @@
+//CLASSE PRINCIPAL
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.aula01_poo_29_07_2026;
+
+/**
+ *
+ * @author alunolab11
+ */
+public class Principal {
+
+    public static void main(String[] args) { //classe que tem esse metodo é a classe principal
+        Pessoa p1 = new Pessoa("123.456.789-11", "Arthur cheira toba", "");
+        System.out.println("Hello World!");
+    }
+}
+
+
+/*
+entidade(SQL) == classe(POO)
+atributo(SQL) == caracteristica(POO) //variavel que tem determinado tipo ex:string
+função == metodo(POO) == procedimento(Projeto)
+classe determina o comum dentro de um grupo.
+classes tem caracteristicas e metodos (ou atributos e funções)
+
+classe é um conjunto de caracteristicas e metodos.
+o objeto daqueal classe tem os atributos e metodos da classe,
+mas o que difere cada objeto são os valores desses atibutos.
+
+ex: classe carro tem atributos como marca, modelo, placa, ano e cor.
+mas mesmo um ford Ka e um Uno sejam da mesmaclasse são objetos diferentes.
+
+classe Pincel: //entidade
+string cor; //atributo
+string marca; //atributo
+riscar(); //metodo
+
+objeto Pincel
+string cor: azul; //tipo
+string marca: compacto; //tipo 
+riscar(); //metodo ou função
+
+*/
+
+
+
+//CLASSE PESSOA
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.aula01_poo_29_07_2026;
+
+/**
+ *
+ * @author alunolab11
+ */
+public class Pessoa {
+    String nome, CPF, telefone;//variavel global
+    int idade;
+    double altura, peso; //essas são variaveis da classe
+    
+    Pessoa(String CPF, String nome, int idade, //variavel local
+            double altura, double peso, String telefone){ //essas são variaveis do metodo}
+        this.CPF = CPF;
+        this.nome = nome;
+        this.idade = idade;
+        this.altura = altura;
+        this.peso = peso;
+        this.telefone = telefone;
+    }      
+}
