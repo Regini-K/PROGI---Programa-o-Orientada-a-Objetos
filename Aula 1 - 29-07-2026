@@ -63,8 +63,8 @@ public class Pessoa {
     int idade;
     double altura, peso; //essas são variaveis da classe
     
-    Pessoa(String CPF, String nome, int idade, //variavel local
-            double altura, double peso, String telefone){ //essas são variaveis do metodo}
+    Pessoa(String CPF, String nome, int idade, //variavel local, essas são variaveis do metodo
+            double altura, double peso, String telefone){
         this.CPF = CPF;
         this.nome = nome;
         this.idade = idade;
