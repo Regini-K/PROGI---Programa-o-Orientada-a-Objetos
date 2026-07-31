@@ -1,0 +1,91 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.aula02_poo_31_07;
+
+/**
+ *
+ * @author alunolab11
+ */
+public class Aula02_POO_31_07 {
+
+    public static void main(String[] args) {
+        //Aqui funciona pelo metodo contruct vazio
+        Pessoa p1 = new Pessoa();//criei uma variave de tipo Pessoa (que é uma classe);
+        p1.CPF = "111.111.111-11";
+        p1.nome = "Lucio";
+        p1.idade = 11;
+        p1.altura = 1.73;
+        p1.peso = 85.3;
+        p1.telefone = "27 999675093";
+        
+        //Aqui funciona pelo metodo contruct com as variaveis definidas
+        //Pessoa("111.111.111-11", "Arthur Adora Pinto";, 11, 1.73, 85.3, "27 999675093");
+        
+        System.out.println("Dados do cliente: ");
+        System.out.println("CPF:"+ p1.CPF);
+        System.out.println("nome:"+ p1.nome);
+        System.out.println("idade:"+ p1.idade);
+        System.out.println("altura:"+ p1.altura);
+        System.out.println("peso:"+ p1.peso);
+        System.out.println("telefone:"+ p1.telefone);
+
+    }
+}
+
+/*
+Classe normalmente é iniciado em letra maiuiscula
+normalmente tbm é Public, pq nao faz sentido uma classe que deve ser chamada em outro momento ser privada, o que deixaria ela so rodar dentro de si mesma;
+
+
+*/
+
+
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.aula02_poo_31_07;
+
+/**
+ *
+ * @author alunolab11
+ */
+public class Pessoa {
+
+    String nome, CPF, telefone;//variavel global
+    int idade;
+    double altura, peso; //essas são variaveis da classe
+
+    Pessoa() {
+    }
+
+    Pessoa(String CPF, String nome, int idade, //variavel local, essas são variaveis do metodo
+            double altura, double peso, String telefone) {
+        this.CPF = CPF;
+        this.nome = nome;
+        this.idade = idade;
+        this.altura = altura;
+        this.peso = peso;
+        this.telefone = telefone;
+    }
+}
+
+/*
+Cadastro(String CPF, String nomeCompleto, int idade,double altura, double peso, String telefone){ 
+mesmo eu mudando o nome da variavel local daria erro pq para o programa são a mesma coisa
+ */
+/*
+Uma classe não é reconhecida pelo nome, nem pelo nome das variaveis, mas sim pelos tipos;
+por exemplo
+pessoa(string nome, Int idade){}
+pessoa(String nomeCompleto, Int idade){}
+esses metodos são iguais, pois o que o pc ve é basicamente 
+(string, int).
+
+alt + shift + f (faz a identação)
+*/
+
+
