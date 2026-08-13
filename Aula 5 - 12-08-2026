@@ -1,0 +1,167 @@
+Principal
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.aula5_12_08_2026;
+
+/**
+ *
+ * @author alunolab11
+ */
+public class Principal {
+
+    public static void main(String[] args) {
+        //Conta c1 = new Conta(12,123456,1000000.00);
+        //c1.agencia = 12;
+        //c1.numero = 123456;
+        //c1.saldo = 1000000.00;
+        
+        //Conta c1 = new Conta();
+        //c1.setAgencia(12);
+        //c1.setNumero(123456);
+        //c1.saldo = 1000000.00;
+        Conta c1 = new Conta(12,123456,1000000.00);
+        Conta c2 = new Conta(12,654321);
+        
+        System.out.println();
+        System.out.println("Conta 1");
+        System.out.println("Numero da agencia: "+ c1.getAgencia());
+        System.out.println("Numero da conta: "+ c1.getNumero());
+        //System.out.println("Saldo: R$ "+ c1.saldo);
+        System.out.println("Saldo: R$ "+ c1.getSaldo());
+        System.out.println();
+        System.out.println("Conta 2");
+        System.out.println("Numero da agencia: "+ c2.getAgencia());
+        System.out.println("Numero da conta: "+ c2.getNumero());
+        System.out.println("Saldo: R$ "+ c2.getSaldo());
+        System.out.println();
+        
+        c1.creditar(300.00);
+        
+        System.out.println();
+        System.out.println("Conta 1");
+        System.out.println("Numero da agencia: "+ c1.getAgencia());
+        System.out.println("Numero da conta: "+ c1.getNumero());
+        //System.out.println("Saldo: R$ "+ c1.saldo);
+        System.out.println("Saldo: R$ "+ c1.getSaldo());
+        System.out.println();
+        System.out.println("Conta 2");
+        System.out.println("Numero da agencia: "+ c2.getAgencia());
+        System.out.println("Numero da conta: "+ c2.getNumero());
+        System.out.println("Saldo: R$ "+ c2.getSaldo());
+        System.out.println();
+        
+        c1.transferir(1000400.00, c2);
+        //c2.debitar(400);
+        
+        System.out.println();
+        System.out.println("Conta 1");
+        System.out.println("Numero da agencia: "+ c1.getAgencia());
+        System.out.println("Numero da conta: "+ c1.getNumero());
+        //System.out.println("Saldo: R$ "+ c1.saldo);
+        System.out.println("Saldo: R$ "+ c1.getSaldo());
+        System.out.println();
+        System.out.println("Conta 2");
+        System.out.println("Numero da agencia: "+ c2.getAgencia());
+        System.out.println("Numero da conta: "+ c2.getNumero());
+        System.out.println("Saldo: R$ "+ c2.getSaldo());
+        System.out.println();
+    }
+}
+
+
+CONTA
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.aula5_12_08_2026;
+
+/**
+ *
+ * @author alunolab11
+ */
+public class Conta {
+    private int agencia, numero;
+    private double saldo; //só pode ser usado dentro dessa classe, nao da pra modificar o saldo fora
+    
+    Conta(){
+    }
+    
+    
+    Conta(int agencia, int numero){
+        this.agencia = agencia;
+        this.numero = numero;
+    }//para conta que pode ser criada sem saldo
+    
+    Conta(int agencia, int numero, double saldo){
+        this.agencia = agencia;
+        this.numero = numero;
+        this.saldo = saldo;
+    }//conta tem que ter saldo para ser criada
+    
+    double getSaldo(){
+        return saldo;
+    } // nao tem etodo set para saldo por conta de segurança
+
+    int getAgencia(){
+        return agencia;
+    }
+    
+    int getNumero(){
+        return numero;
+    }
+    
+    void setAgencia(int agencia){
+        this.agencia = agencia;
+    } //set tem tipo void e tem que ter parametros nesse caso agencia
+    
+    void setNumero(int numero){
+        this.numero = numero;
+    }
+    
+    //criar metodos creditar(por na conta), debitar(tirar da conta) e transferir(tirar de uma par aa outra)
+    
+    void creditar(double valor){
+        if(valor > 0){
+            this.saldo += valor;
+            System.out.println("Valor Creditado!");
+        }
+        else{
+            System.out.println("ERROR: Valor invalido!!");
+        }
+    }
+    
+    boolean debitar(double valor){
+        if(valor>0){
+            if(this.saldo >= valor){
+                this.saldo -= saldo;
+                System.out.println("Debido Realizado");
+                return true;
+            }
+            else{
+                System.out.println("ERROR: Saldo Insuficiemte!");
+                return false;
+            }
+        }
+        else{
+            System.out.println("ERROR: Valor invalido!!");
+        }
+        return false;
+    }
+    
+    void transferir(double valor, Conta destino){//"Conta" é o tipo da variavel, maiusculopq é uma classe.
+        if(debitar(valor)){
+          destino.creditar(valor);
+        }
+        else{
+            System.out.println("Transferencia Negada!");
+        }
+    }
+
+}
+//alt + insert é um atalho pra criar get e set para uma classe que vc fez 
+//dontpad.com/java12082026
