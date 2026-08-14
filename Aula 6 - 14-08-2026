@@ -1,0 +1,158 @@
+PRINCIPAL:
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.aula06_14_08_2026;
+
+/**
+ *
+ * @author alunolab11
+ */
+public class Principal {
+
+    public static void main(String[] args) {
+        Conta c1 = new Conta(1,1,1000.00);
+        Conta c2 = new Conta(1,2,890.00);
+        
+        c1.creditar(800);
+        c2.debitar(900);
+        c1.transferir(1500, c2);
+        
+        //System.out.println("O saldo da Conta 1: " + c1.getSaldo());
+        //System.out.println("O saldo da Conta 2: " + c2.getSaldo());
+        System.out.println(c1.toString());
+        
+    }
+}
+
+//encapsulamento é um tipo de conceito de Poo
+//provado quando acionamos metodos publicos para mexer com dados privados.
+
+CONTA:
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.aula06_14_08_2026;
+
+/**
+ *
+ * @author alunolab11
+ */
+public class Conta {
+
+    private int agencia, numero;
+    private double saldo; //só pode ser usado dentro dessa classe, nao da pra modificar o saldo fora
+
+    Conta() {
+    }
+
+    Conta(int agencia, int numero) {
+        this.agencia = agencia;
+        this.numero = numero;
+    }//para conta que pode ser criada sem saldo
+
+    Conta(int agencia, int numero, double saldo) {
+        this.agencia = agencia;
+        this.numero = numero;
+        this.saldo = saldo;
+    }//conta tem que ter saldo para ser criada
+
+    double getSaldo() {
+        return saldo;
+    } // nao tem etodo set para saldo por conta de segurança
+
+    int getAgencia() {
+        return agencia;
+    }
+
+    int getNumero() {
+        return numero;
+    }
+
+    void setAgencia(int agencia) {
+        this.agencia = agencia;
+    } //set tem tipo void e tem que ter parametros nesse caso agencia
+
+    void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    //criar metodos creditar(por na conta), debitar(tirar da conta) e transferir(tirar de uma par aa outra)
+    void creditar(double valor) {
+        if (valor > 0) {
+            this.saldo += valor;
+            System.out.println("Valor Creditado!");
+        } else {
+            System.out.println("ERROR: Valor invalido!!");
+        }
+    }
+
+    boolean debitar(double valor) {
+        if (valor > 0) {
+            if (this.saldo >= valor) {
+                this.saldo -= saldo;
+                System.out.println("Debido Realizado");
+                return true;
+            } else {
+                System.out.println("ERROR: Saldo Insuficiemte!");
+                return false;
+            }
+        } else {
+            System.out.println("ERROR: Valor invalido!!");
+        }
+        return false;
+    }
+
+    void transferir(double valor, Conta destino) {//"Conta" é o tipo da variavel, maiusculopq é uma classe.
+        if (debitar(valor)) {
+            destino.creditar(valor);
+        } else {
+            System.out.println("Transferencia Negada!");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Conta \n Agencia: " + getAgencia() +"\n Numero: "+ getNumero() + "\n Saldo: " + getSaldo();
+    } //metodo padrao do java para puxar todos os dados de um objeto.
+
+}
+
+//existe a herança no POO, nela temos uma classe filha que recebe todos os atributos PUBLICOS de uma classe pai.
+//se for privado esse atributo não é passado em herança
+// para fazermos isso usamos o "extend"
+
+
+CONTA CORRENTE:
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.aula06_14_08_2026;
+
+/**
+ *
+ * @author alunolab11
+ */
+public class ContaCorrente extends Conta {
+    private double limite;
+    
+    public ContaCorrente(){
+    }
+    
+    public ContaCorrente(int agencia, int numero, double saldo, double limite){
+        super(agencia, numero, saldo); //super faz acessar os parametros da superclasse(classe pai)
+        //super.setAgencia(agencia);
+        //nisso acima eu consegui puxar um metodo ja criado na superclasse.
+        this.agencia = agencia;
+        this.numero = numero;
+        this.saldo = saldo;
+    }
+}
+
+//em POO java só temos uma superclasse, nao se pode ser extend de duas coisas ao mesmo tempo.
