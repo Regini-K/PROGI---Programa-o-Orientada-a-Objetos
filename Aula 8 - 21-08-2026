@@ -1,0 +1,160 @@
+Principal
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.aula08_21_08_26;
+
+/**
+ *
+ * @author alunolab11
+ */
+
+public class Principal {
+
+    public static void main(String[] args) {
+        Conta c1 = new ContaCorrente(1, 1, 1000.00, 1000.00);
+        Conta c2 = new ContaCorrente(1, 2, 890.00, 1000.00);
+
+       //c1.creditar(800);
+       //c2.debitar(900);
+       //c1.transferir(1500, c2);
+
+       System.out.println("O saldo da Conta 1: " + c1.toString());
+       System.out.println("O saldo da Conta 2: " + c2.toString());
+
+        
+    }
+}
+
+
+Conta
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.aula08_21_08_26;
+
+/**
+ *
+ * @author alunolab11
+ */
+public class Conta {
+
+    private int agencia, numero;
+    private double saldo;
+
+    public int getAgencia() {
+        return agencia;
+    }
+
+    public void setAgencia(int agencia) {
+        this.agencia = agencia;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public Conta(int agencia, int numero) {
+        this.agencia = agencia;
+        this.numero = numero;
+    }
+
+    public Conta(int agencia, int numero, double saldo) {
+        this.agencia = agencia;
+        this.numero = numero;
+        this.saldo = saldo;
+    }
+
+    public void creditar(double valor) {
+        if (valor > 0) {
+            this.saldo += valor;
+            //System.out.println("Crédito Realizado!");
+        } else {
+            System.out.println("Valor Inválido!");
+        }
+    }
+
+    public void debitar(double valor) {
+        if (valor > 0 && valor <= getSaldo()) {
+            this.saldo -= valor;
+            // System.out.println("Débito Realizado!");
+        } else {
+            System.out.println("Saldo Insuficiente!");
+        }
+    }
+
+    public void transferir(double valor, Conta destino) {
+        if (valor > 0 && destino != null && valor <= getSaldo()) {
+            this.debitar(valor);
+            destino.creditar(valor);
+            //System.out.println("Transferência Realizada!");
+        } else {
+            System.out.println("Transferência Negada!");
+
+        }
+
+    }
+
+    @Override
+    public String toString() {
+        return "Conta: \nNúmero da Agência: " + getAgencia() + "\n"
+                + "Número da Conta: " + getNumero() + "\n"
+                + "Saldo: R$ " + getSaldo();
+    }
+}
+
+
+COntacorrente
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.aula08_21_08_26;
+
+/**
+ *
+ * @author alunolab11
+ */
+public class ContaCorrente extends Conta {
+
+    private double limite;
+    private double saldoTotal;
+
+    public ContaCorrente(int agencia, int numero, double saldo, double limite) {
+        super(agencia, numero, saldo);
+        this.limite = limite;   
+    }
+    
+    public double getLimite(){
+        return limite;
+    }
+    
+    public void setSaldoTotal(double getLimite){
+        this.saldoTotal = getSaldo();
+        this.saldoTotal += this.limite;
+    }
+
+    public void atualizarLimite(double limite) {
+        if (limite >= 0) {
+            this.limite = limite;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "limite = " + limite + "Saldo total: " + saldoTotal);
+    }
+}
