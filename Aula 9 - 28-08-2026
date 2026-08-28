@@ -167,3 +167,47 @@ public class ContaCorrente extends Conta{
                 getNumero() + "\nSaldo: " + getSaldo() + "\n" + "Limite: " + getLimite() + "\n"; 
     }
 }
+
+
+--------------------------------------------------------------------------[
+cotna corrente alternativa
+
+public class ContaCorrente extends Conta {
+
+    private double limite;
+    private double saldoTotal;
+
+    public ContaCorrente(int agencia, int numero, double saldo, double limite) {
+        super(agencia, numero, saldo);
+        this.limite = limite;
+    }
+
+    public double getLimite(){
+        return limite;
+    }
+    
+    public double getSaldoTotal(){
+        double saldoTtl = getSaldo();
+        //System.out.println(saldoTtl);
+        saldoTtl += getLimite();
+        //System.out.println(saldoTtl);
+        return saldoTtl;
+    }
+//    
+//    public void setSaldoTotal(double getLimite){
+//        this.saldoTotal = getSaldo();
+//        this.saldoTotal += this.limite;
+//    }
+    public void atualizarLimite(double limite) {
+        if (limite >= 0) {
+            this.limite = limite;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ContaCorrente{" + "Saldo" + getSaldo() + "limite=" + getLimite() + ", saldoTotal=" + getSaldoTotal() + "}";
+    }
+    
+
+}
