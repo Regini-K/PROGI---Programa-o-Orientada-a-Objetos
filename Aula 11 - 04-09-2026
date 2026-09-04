@@ -1,0 +1,135 @@
+//--------------------------------------------------------------------------------------------------------------
+//Principal
+//--------------------------------------------------------------------------------------------------------------
+
+public class Principal {
+    
+    public static void main(String[] args){
+    Bebida b1 = new Bebida(20, 120, "Guaraná Lata", 5.90);
+    Pizza p1 = new Pizza("Gigante", 35, 
+            Arrays.asList("Requeijão", "Catupiri", "Mussarela", "Gorgonzola"),
+            102, "4 Queijos", 124.25);
+    
+    b1.darEntrada(12);
+    
+        System.out.println(b1.toString());
+        System.out.println(p1.toString());
+    }
+}
+
+//--------------------------------------------------------------------------------------------------------------
+//Produto
+//--------------------------------------------------------------------------------------------------------------
+
+public class Produto {
+    private int codigo;
+    private String nome;
+    private double valor;
+
+    public Produto() {
+    }
+
+    public Produto(int codigo, String nome, double valor) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.valor = valor;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" + "codigo=" + codigo + ", nome=" + nome + ", valor=" + valor + '}';
+    }
+
+}
+
+//--------------------------------------------------------------------------------------------------------------
+//Bebida
+//--------------------------------------------------------------------------------------------------------------
+
+public class Bebida extends Produto{
+    private int quantidadeEstoque;
+
+    public Bebida(int quantidadeEstoque, int codigo, String nome, double valor) {
+        super(codigo, nome, valor);
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
+
+    
+
+
+    public void darEntrada(int quantidade){
+        if(quantidade>0){
+            this.quantidadeEstoque += quantidade;
+        }
+        else{
+            System.out.println("Digite valorvalido!");
+        }
+    }
+    
+    public void darBaixa(int quantidade){
+        if(quantidade > 0 && quantidade<=this.quantidadeEstoque){
+            this.quantidadeEstoque -= quantidade;
+        }
+        else{
+            System.out.println("Digite valor valido, menor ou igual valor em estoque!");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Bebida{" + "quantidadeEstoque=" + quantidadeEstoque + '}';
+    }
+    
+    
+}
+
+//--------------------------------------------------------------------------------------------------------------
+//Pizza
+//--------------------------------------------------------------------------------------------------------------
+
+public class Pizza extends Produto{
+    private String tamanho;
+    private int diametro;
+    private List<String> indredientes;
+
+    public Pizza() {
+        super();
+    }
+
+    public Pizza(String tamanho, int diametro, List<String> indredientes, int codigo, String nome, double valor) {
+        super(codigo, nome, valor);
+        this.tamanho = tamanho;
+        this.diametro = diametro;
+        this.indredientes = indredientes;
+    }
+
+    public String getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(String tamanho) {
+        this.tamanho = tamanho;
+    }
+
+    public int getDiametro() {
+        return diametro;
+    }
+
+    public void setDiametro(int diametro) {
+        this.diametro = diametro;
+    }
+
+    public List<String> getIndredientes() {
+        return indredientes;
+    }
+
+    public void setIndredientes(List<String> indredientes) {
+        this.indredientes = indredientes;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Pizza{" + "tamanho=" + tamanho + ", diametro=" + diametro + ", indredientes=" + indredientes + '}';
+    }
+  
+}
