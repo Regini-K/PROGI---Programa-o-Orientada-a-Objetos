@@ -1,0 +1,95 @@
+FORMAPAGAMENTO
+
+ package com.mycompany.atividade_forma_pagamento;
+
+ public abstract class FormaPagamento {
+ private double valor;
+
+ public abstract double calcularTotal();
+
+ public double getValor(){
+ return this.valor;
+ }
+
+ public void setValor(double valor){
+ this.valor = valor;
+ }
+
+ public void processarPagamento(){
+ System.out.println("Seu valor de pagamento e:" + calcularTotal());
+ }
+ }
+
+
+PAGAMENTO PIX
+
+ package com.mycompany.atividade_forma_pagamento;
+
+ public class PagamentoPix extends FormaPagamento{
+
+ public PagamentoPix(double valor){
+ setValor(valor);
+ }
+
+ @Override
+ public double calcularTotal(){
+ double valor = getValor();
+ return valor * 0.9;
+ }
+ }
+
+
+PAGAMENTO CARTAO
+
+ package com.mycompany.atividade_forma_pagamento;
+
+ public class PagamentoCartao extends FormaPagamento{
+
+ public PagamentoCartao(double valor){
+ setValor(valor);
+ }
+
+ @Override
+ public double calcularTotal(){
+ double valor = getValor();
+ return valor * 1.05;
+ }
+ }
+
+
+
+
+PAGAMENTO BOLETO
+
+ package com.mycompany.atividade_forma_pagamento;
+
+ public class PagamentoBoleto extends FormaPagamento{
+
+ public PagamentoBoleto(double valor){
+ setValor(valor);
+ }
+
+ @Override
+ public double calcularTotal(){
+ double valor = getValor();
+ return valor +2;
+ }
+ }
+
+
+
+CHEKOUT
+
+ package com.mycompany.atividade_forma_pagamento;
+
+ public class Checkout{
+ public Checkout(){
+ }
+
+ public void finalizarCompra(FormaPagamento pagamento){
+ pagamento.processarPagamento();
+ }
+ }
+
+
+
