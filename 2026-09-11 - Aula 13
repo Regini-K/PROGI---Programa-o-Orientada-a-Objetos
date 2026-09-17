@@ -1,0 +1,63 @@
+//--------------------------------------------------------------------------------------------------------------
+//Main
+//--------------------------------------------------------------------------------------------------------------
+
+public class Main {
+
+    public static void main(String[] args) {
+        Square s1 = new Square(10);
+        Circle c1 = new Circle(5)
+        
+        ;
+        
+        System.out.println("Figura 1: " + s1.calcularArea() + "\n" + "Figura 2: " + c1.calcularArea());
+    }
+}
+
+//--------------------------------------------------------------------------------------------------------------
+//Figure
+//--------------------------------------------------------------------------------------------------------------
+
+public abstract class Figure {
+    
+    public abstract double calcularArea();
+    
+}
+
+//--------------------------------------------------------------------------------------------------------------
+//Circle
+//--------------------------------------------------------------------------------------------------------------
+
+public class Circle extends Figure{
+    private double radius;
+    
+    public Circle(double radius){
+        this.radius = radius;
+    }
+    
+    @Override
+    public double calcularArea(){
+        double area;
+        area = 3.14*radius*radius;
+        return area;
+    }
+}
+
+
+//--------------------------------------------------------------------------------------------------------------
+//Square
+//--------------------------------------------------------------------------------------------------------------
+
+public class Square extends Figure {
+    private double side;
+            
+    public Square(double side){
+        this.side = side;  
+    }
+    
+    @Override
+    public double calcularArea(){
+        return side*side;
+    }
+    
+}
